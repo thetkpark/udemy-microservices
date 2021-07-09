@@ -34,7 +34,6 @@ app.post('/posts/create', async (req, res) => {
 })
 
 app.post('/events', (req, res) => {
-	console.log(req.body)
 	res.send({})
 })
 
