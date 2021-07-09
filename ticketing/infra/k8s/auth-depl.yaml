@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: auth
-        image: thetkpark/ticketing-auth
+        image: asia.gcr.io/macbigduck/thetkpark-ticketing-auth
         # resources:
         #   limits:
         #     memory: "128Mi"
