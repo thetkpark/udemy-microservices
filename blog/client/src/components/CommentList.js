@@ -4,12 +4,19 @@ const CommentList = ({ comments }) => {
   const renderedComments = comments.map(comment => {
     let content
 
-    if (comment.status == 'approved') {
-      content = comment.context
-    } else if (comment.status == 'pending') {
-      content = 'This comment is awaitng moderaion'
-    } else if (comment.status == 'rejected') {
-      content = 'This comment has been rejected'
+    switch (comment.status) {
+      case 'approved':
+        content = comment.context
+        break;
+      case 'pending':
+        content = 'This comment is awaitng moderaion'
+        break;
+      case 'rejected':
+        content = 'This comment has been rejected'
+        break;
+      default:
+        content = ''
+        break;
     }
 
     return <li key={comment.id}>{content}</li>
