@@ -3,6 +3,7 @@ import { body, validationResult } from 'express-validator'
 import { BadRequestError } from '../errors/bad-request-error'
 import { RequestValidationError } from '../errors/request-validation-error'
 import { User } from '../models/user'
+import { Password } from '../services/password'
 
 const router = express.Router()
 
@@ -28,7 +29,8 @@ router.post(
 			throw new BadRequestError('Email in use')
 		}
 
-		const user = User.build({ email, password })
+		const hashedPassword = await Password.toHash(password)
+		const user = User.build({ email, password: hashedPassword })
 		await user.save()
 
 		res.status(201).send(user)
