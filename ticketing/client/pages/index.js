@@ -1,9 +1,8 @@
 import axios from 'axios'
 
 const Home = ({ currentUser }) => {
-  return currentUser ? <h1>You are sign in</h1> : <h1>You are not sign in</h1>
+  return <div>{currentUser ? <h1>You are sign in</h1> : <h1>You are not sign in!!</h1>}</div>
 }
-
 export async function getServerSideProps({ req }) {
   try {
     const { data } = await axios.get(
