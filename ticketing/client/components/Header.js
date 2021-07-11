@@ -15,7 +15,6 @@ const Header = ({ currentUser }) => {
       </li>
     ))
 
-  console.log(currentUser)
   return (
     <nav className="navbar navbar-light bg-light">
       <Link href="/">
