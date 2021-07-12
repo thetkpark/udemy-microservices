@@ -11,7 +11,7 @@ it('return a ticket if the ticket is found', async () => {
 	const ticket = Ticket.build({
 		price,
 		title,
-		usedId: 'someid',
+		userId: 'someid',
 	})
 	await ticket.save()
 

@@ -4,7 +4,7 @@ import mongoose from 'mongoose'
 interface TicketAttrs {
 	title: string
 	price: number
-	usedId: string
+	userId: string
 }
 
 // An interface that descirbes properties that ticket model has
@@ -16,7 +16,7 @@ interface TicketModel extends mongoose.Model<TicketDoc> {
 interface TicketDoc extends mongoose.Document {
 	title: string
 	price: number
-	usedId: string
+	userId: string
 }
 
 const ticketSchema = new mongoose.Schema(
@@ -29,7 +29,7 @@ const ticketSchema = new mongoose.Schema(
 			type: Number,
 			required: true,
 		},
-		usedId: {
+		userId: {
 			type: String,
 			required: true,
 		},

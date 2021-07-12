@@ -7,17 +7,17 @@ it('can fetch a list of tickets', async () => {
 		Ticket.build({
 			title: 'Queen',
 			price: 100,
-			usedId: 'someid',
+			userId: 'someid',
 		}),
 		Ticket.build({
 			title: 'Elvis',
 			price: 200,
-			usedId: 'someanotherAnotherid',
+			userId: 'someanotherAnotherid',
 		}),
 		Ticket.build({
 			title: 'ONE OK ROCK',
 			price: 29.5,
-			usedId: 'someAnotherid',
+			userId: 'someAnotherid',
 		}),
 	]
 	await Promise.all(tickets.map(ticket => ticket.save()))
