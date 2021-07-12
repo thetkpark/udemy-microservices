@@ -527,6 +527,16 @@
   dependencies:
     "@sinonjs/commons" "^1.7.0"
 
+"@sp-udemy-ticketing/common@^1.0.11":
+  version "1.0.11"
+  resolved "https://registry.yarnpkg.com/@sp-udemy-ticketing/common/-/common-1.0.11.tgz#cc06d09bb0129748dbf62e986105373b95638890"
+  integrity sha512-WuEECxbOoQ3TIMmCU2kxeqXnhKtFIniYu0WNeVtQEowoRZq4+v8WDUorWcXFn5LMXOImYz9g9n3uvjmTF2qAuA==
+  dependencies:
+    cookie-session "^1.4.0"
+    express "^4.17.1"
+    express-validator "^6.12.0"
+    jsonwebtoken "^8.5.1"
+
 "@tootallnate/once@1":
   version "1.1.2"
   resolved "https://registry.yarnpkg.com/@tootallnate/once/-/once-1.1.2.tgz#ccb91445360179a04e7fe6aff78c00ffc1eeaf82"
