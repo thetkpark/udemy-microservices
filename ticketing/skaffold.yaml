@@ -27,4 +27,12 @@ build:
         manual:
           - src: '**/*.js'
             dest: .
+    - image: asia.gcr.io/macbigduck/thetkpark-ticketing-tickets
+      context: tickets
+      docker: 
+        dockerfile: Dockerfile
+      sync:
+        manual:
+          - src: 'src/**/*.ts'
+            dest: .
   
