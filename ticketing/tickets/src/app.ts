@@ -2,7 +2,8 @@ import express from 'express'
 import { json } from 'body-parser'
 import 'express-async-errors'
 import cookieSession from 'cookie-session'
-import { errorHandler, NotFoundError } from '@sp-udemy-ticketing/common'
+import { currentUser, errorHandler, NotFoundError } from '@sp-udemy-ticketing/common'
+import { createTicketRouter } from './routes/new'
 
 const app = express()
 
@@ -14,6 +15,9 @@ app.use(
 		httpOnly: true,
 	})
 )
+app.use(currentUser)
+
+app.use(createTicketRouter)
 
 app.all('*', async () => {
 	throw new NotFoundError()
