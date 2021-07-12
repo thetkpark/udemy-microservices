@@ -1,8 +1,9 @@
 import jwt from 'jsonwebtoken'
+import mongoose from 'mongoose'
 
 export const signup = () => {
 	const payload = {
-		id: '6e7efac9-3a5d-4339-ab17-db21e85cbd92',
+		id: new mongoose.Types.ObjectId().toHexString(),
 		email: 'test@test.com',
 	}
 	const token = jwt.sign(payload, process.env.JWT_KEY!)
