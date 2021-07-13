@@ -15,7 +15,11 @@ stan.on('connect', () => {
 		process.exit()
 	})
 
-	const options = stan.subscriptionOptions().setManualAckMode(true)
+	const options = stan
+		.subscriptionOptions()
+		.setManualAckMode(true)
+		.setDeliverAllAvailable()
+		.setDurableName('orders-services')
 
 	// Queue Group of each event ->Only one listener get the event (No duplicate event)
 	const subscription = stan.subscribe('ticket:created', 'orders-service-queue-group', options)
