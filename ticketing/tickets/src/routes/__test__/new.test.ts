@@ -3,7 +3,7 @@ import { app } from '../../app'
 import { signup } from '../../test/authHelper'
 import { Ticket } from '../../models/ticket'
 
-jest.mock('../../__mocks__/nats-wrapper.ts')
+jest.mock('../../nats-wrapper')
 
 it('has a route handler listening to POST /api/tickets', async () => {
 	const res = await request(app).post('/api/tickets').send({})

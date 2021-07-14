@@ -512,7 +512,7 @@
   dependencies:
     "@sinonjs/commons" "^1.7.0"
 
-"@sp-udemy-ticketing/common@^1.0.11":
+"@sp-udemy-ticketing/common@^1.0.14":
   version "1.0.14"
   resolved "https://registry.yarnpkg.com/@sp-udemy-ticketing/common/-/common-1.0.14.tgz#faa5ae71723c4c36aa187913d4e64c38e727aa1c"
   integrity sha512-zw7crGgNGLUBwWGLQHSQK/xIokevUpCPos6WggpE38IdATh+48ndCMmR9KW5t7AF5LISxUJrZfOupqXdiKIUHA==
