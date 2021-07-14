@@ -513,9 +513,9 @@
     "@sinonjs/commons" "^1.7.0"
 
 "@sp-udemy-ticketing/common@^1.0.11":
-  version "1.0.12"
-  resolved "https://registry.yarnpkg.com/@sp-udemy-ticketing/common/-/common-1.0.12.tgz#b213a75760131cf6ac6bf5d6d4209d3e6228bff5"
-  integrity sha512-kh88vu4bcd4YQq0+QNncQdtskqnj/FqAWDsvfXYrG2NnUw94z7o/Ldn7mZ9MAExsUNHGiDp8WyVLRuEAxTW0GQ==
+  version "1.0.14"
+  resolved "https://registry.yarnpkg.com/@sp-udemy-ticketing/common/-/common-1.0.14.tgz#faa5ae71723c4c36aa187913d4e64c38e727aa1c"
+  integrity sha512-zw7crGgNGLUBwWGLQHSQK/xIokevUpCPos6WggpE38IdATh+48ndCMmR9KW5t7AF5LISxUJrZfOupqXdiKIUHA==
   dependencies:
     cookie-session "^1.4.0"
     express "^4.17.1"
