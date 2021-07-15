@@ -17,10 +17,10 @@ spec:
         args: ['-p', '4222', '-m', '8222', '-hbi', '5s', '-hbt', '5s', '-hbf', '2', '-SD', '-cid', 'ticketing']
         resources:
           limits:
-            memory: "256Mi"
+            memory: "512Mi"
             cpu: "500m"
           requests:
-            memory: "128Mi"
+            memory: "256Mi"
             cpu: "100m"
 ---
 apiVersion: v1
