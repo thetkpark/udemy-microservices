@@ -6,14 +6,14 @@ interface OrderAttrs {
 	userId: string
 	status: OrderStatus
 	expiresAt: Date
-	ticketId: TicketDoc
+	ticket: TicketDoc
 }
 
 interface OrderDoc extends mongoose.Document {
 	userId: string
 	status: OrderStatus
 	expiresAt: Date
-	ticketId: TicketDoc
+	ticket: TicketDoc
 }
 
 interface OrderModel extends mongoose.Model<OrderDoc> {
@@ -35,7 +35,7 @@ const orderSchema = new mongoose.Schema(
 		expiresAt: {
 			type: mongoose.Schema.Types.Date,
 		},
-		ticketId: {
+		ticket: {
 			type: mongoose.Schema.Types.ObjectId,
 			ref: 'Ticket',
 		},
