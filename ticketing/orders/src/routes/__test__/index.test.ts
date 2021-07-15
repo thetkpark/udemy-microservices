@@ -1,9 +1,7 @@
 import request from 'supertest'
 import { app } from '../../app'
 import { signup } from '../../test/authHelper'
-import { Order } from '../../models/order'
 import { Ticket } from '../../models/ticket'
-import { OrderStatus } from '@sp-udemy-ticketing/common'
 
 const buildTicket = async () => {
 	const ticket = Ticket.build({
