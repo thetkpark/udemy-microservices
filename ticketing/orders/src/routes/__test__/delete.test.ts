@@ -5,6 +5,7 @@ import { app } from '../../app'
 import { signup } from '../../test/authHelper'
 import { Ticket } from '../../models/ticket'
 import { Order } from '../../models/order'
+import { natsWrapper } from '../../nats-wrapper'
 
 it('return an error if delete not existing order', async () => {
 	await request(app).get(`/api/orders/${mongoose.Types.ObjectId()}`).set('Cookie', signup()).send().expect(404)
@@ -51,4 +52,23 @@ it('marks an order as cancelled', async () => {
 	expect(updatedOrder!.status).toEqual(OrderStatus.Cancelled)
 })
 
-it.todo('emits a order cancelled event')
+it('emits a order cancelled event', async () => {
+	const user = signup()
+	const ticket = Ticket.build({
+		title: 'Concert',
+		price: Math.ceil(Math.random() * 100),
+	})
+	await ticket.save()
+
+	const { body: order } = await request(app)
+		.post('/api/orders')
+		.set('Cookie', user)
+		.send({
+			ticketId: ticket.id,
+		})
+		.expect(201)
+
+	await request(app).delete(`/api/orders/${order.id}`).set('Cookie', user).send().expect(200)
+
+	expect(natsWrapper.client.publish).toHaveBeenCalled()
+})
