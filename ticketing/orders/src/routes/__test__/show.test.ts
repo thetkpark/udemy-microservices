@@ -45,20 +45,5 @@ it('return an error if fetch the other user order', async () => {
 })
 
 it('return an error if fetch not existing order', async () => {
-	const user = signup()
-	const ticket = Ticket.build({
-		title: 'Concert',
-		price: Math.ceil(Math.random() * 100),
-	})
-	await ticket.save()
-
-	const { body: order } = await request(app)
-		.post('/api/orders')
-		.set('Cookie', signup())
-		.send({
-			ticketId: mongoose.Types.ObjectId(),
-		})
-		.expect(201)
-
-	await request(app).get(`/api/orders/${order.id}`).set('Cookie', user).send().expect(404)
+	await request(app).get(`/api/orders/${mongoose.Types.ObjectId()}`).set('Cookie', signup()).send().expect(404)
 })
