@@ -33,8 +33,11 @@ spec:
                 fieldPath: metadata.name
         resources:
           limits:
+            memory: "256Mi"
+            cpu: "300m"
+          requests:
             memory: "128Mi"
-            cpu: "500m"
+            cpu: "100m"
 ---
 apiVersion: v1
 kind: Service
