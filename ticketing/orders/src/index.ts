@@ -22,7 +22,7 @@ const start = async () => {
 			useUnifiedTopology: true,
 			useCreateIndex: true,
 		})
-		console.log('Connected to tickets MongoDB')
+		console.log('Connected to orders MongoDB')
 	} catch (error) {
 		console.error(error)
 	}
