@@ -14,6 +14,7 @@ it('return an error if delete not existing order', async () => {
 it('return an error if delete the other user order', async () => {
 	const user = signup()
 	const ticket = Ticket.build({
+		id: mongoose.Types.ObjectId().toHexString(),
 		title: 'Concert',
 		price: Math.ceil(Math.random() * 100),
 	})
@@ -33,6 +34,7 @@ it('return an error if delete the other user order', async () => {
 it('marks an order as cancelled', async () => {
 	const user = signup()
 	const ticket = Ticket.build({
+		id: mongoose.Types.ObjectId().toHexString(),
 		title: 'Concert',
 		price: Math.ceil(Math.random() * 100),
 	})
@@ -55,6 +57,7 @@ it('marks an order as cancelled', async () => {
 it('emits a order cancelled event', async () => {
 	const user = signup()
 	const ticket = Ticket.build({
+		id: mongoose.Types.ObjectId().toHexString(),
 		title: 'Concert',
 		price: Math.ceil(Math.random() * 100),
 	})

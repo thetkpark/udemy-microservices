@@ -7,6 +7,7 @@ import { Ticket } from '../../models/ticket'
 it('fetch the order', async () => {
 	const user = signup()
 	const ticket = Ticket.build({
+		id: mongoose.Types.ObjectId().toHexString(),
 		title: 'Concert',
 		price: Math.ceil(Math.random() * 100),
 	})
@@ -28,6 +29,7 @@ it('fetch the order', async () => {
 it('return an error if fetch the other user order', async () => {
 	const user = signup()
 	const ticket = Ticket.build({
+		id: mongoose.Types.ObjectId().toHexString(),
 		title: 'Concert',
 		price: Math.ceil(Math.random() * 100),
 	})

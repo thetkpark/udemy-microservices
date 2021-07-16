@@ -1,10 +1,12 @@
 import request from 'supertest'
+import mongoose from 'mongoose'
 import { app } from '../../app'
 import { signup } from '../../test/authHelper'
 import { Ticket } from '../../models/ticket'
 
 const buildTicket = async () => {
 	const ticket = Ticket.build({
+		id: mongoose.Types.ObjectId().toHexString(),
 		title: 'Concert',
 		price: Math.ceil(Math.random() * 100),
 	})
