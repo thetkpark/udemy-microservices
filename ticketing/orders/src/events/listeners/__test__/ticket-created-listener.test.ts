@@ -34,7 +34,7 @@ it('creates and saves a ticket', async () => {
 	await listener.onMessage(data, msg)
 
 	// Write assertion
-	const ticket = await Ticket.findById(data.id)
+	const ticket = await Ticket.findById(data.id).lean()
 	expect(ticket).toBeDefined()
 	expect(ticket!.title).toEqual(data.title)
 })
