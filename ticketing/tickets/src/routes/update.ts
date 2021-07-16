@@ -1,4 +1,10 @@
-import { NotAuthorizedError, NotFoundError, requireAuth, validateRequest } from '@sp-udemy-ticketing/common'
+import {
+	BadRequestError,
+	NotAuthorizedError,
+	NotFoundError,
+	requireAuth,
+	validateRequest,
+} from '@sp-udemy-ticketing/common'
 import express, { Request, Response } from 'express'
 import { body } from 'express-validator'
 import { Ticket } from '../models/ticket'
@@ -19,6 +25,7 @@ router.put(
 		const ticket = await Ticket.findById(req.params.id)
 		if (!ticket) throw new NotFoundError()
 		if (ticket.userId !== req.currentUser!.id) throw new NotAuthorizedError()
+		if (ticket.orderId) throw new BadRequestError('Ticket is reserved')
 
 		ticket.set({
 			title: req.body.title,
