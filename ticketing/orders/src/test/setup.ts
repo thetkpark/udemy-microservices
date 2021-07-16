@@ -14,7 +14,7 @@ beforeAll(async () => {
 		useNewUrlParser: true,
 		useUnifiedTopology: true,
 	})
-})
+}, 10000)
 
 beforeEach(async () => {
 	jest.clearAllMocks()
@@ -22,9 +22,9 @@ beforeEach(async () => {
 	for (let collection of collections) {
 		await collection.deleteMany({})
 	}
-})
+}, 10000)
 
 afterAll(async () => {
 	await mongo.stop()
 	await mongoose.connection.close()
-})
+}, 10000)
