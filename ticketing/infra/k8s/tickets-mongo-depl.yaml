@@ -18,10 +18,10 @@ spec:
         resources:
           limits:
             memory: "256Mi"
-            cpu: "300m"
+            cpu: "150m"
           requests:
-            memory: "128Mi"
-            cpu: "100m"
+            memory: "80Mi"
+            cpu: "50m"
         
 ---
 apiVersion: v1
