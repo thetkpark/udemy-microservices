@@ -43,4 +43,12 @@ build:
         manual:
           - src: 'src/**/*.ts'
             dest: .
+    - image: asia.gcr.io/macbigduck/thetkpark-ticketing-expiration
+      context: expiration
+      docker: 
+        dockerfile: Dockerfile
+      sync:
+        manual:
+          - src: 'src/**/*.ts'
+            dest: .
   
