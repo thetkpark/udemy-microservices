@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import router from 'next/router'
 import UseRequest from '../../hooks/use-request'
 
 const NewTicket = () => {
