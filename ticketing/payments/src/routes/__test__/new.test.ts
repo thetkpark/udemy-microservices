@@ -5,6 +5,7 @@ import { signup } from '../../test/authHelper'
 import { Order } from '../../models/order'
 import { OrderStatus } from '@sp-udemy-ticketing/common'
 import { stripe } from '../../stripe'
+import { Payment } from '../../models/payment'
 
 it('return a 404 when pay for order that does not exist', async () => {
 	await request(app)
@@ -115,4 +116,10 @@ it('returns a 201 with valid input', async () => {
 	const stripeCharge = stripeCharges.find(charge => charge.amount === price * 100)
 	expect(stripeCharge).toBeDefined()
 	expect(stripeCharge!.currency).toEqual('usd')
+
+	const payment = await Payment.findOne({
+		orderId: order.id,
+		stripeId: stripeCharge!.id,
+	}).lean()
+	expect(payment).not.toBeNull()
 })
