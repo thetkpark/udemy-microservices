@@ -2,7 +2,7 @@ import { MongoMemoryServer } from 'mongodb-memory-server'
 import mongoose from 'mongoose'
 
 jest.mock('../nats-wrapper')
-jest.mock('../stripe')
+// jest.mock('../stripe')
 
 let mongo: any
 beforeAll(async () => {

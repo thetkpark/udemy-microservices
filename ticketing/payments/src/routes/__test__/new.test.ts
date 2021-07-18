@@ -60,14 +60,43 @@ it('return a 400 when pay for order has been cancelled', async () => {
 		.expect(400)
 })
 
+// it.skip('returns a 201 with valid input', async () => {
+// 	const userId = new mongoose.Types.ObjectId().toHexString()
+// 	const cookie = signup(userId)
+
+// 	const order = Order.build({
+// 		id: new mongoose.Types.ObjectId().toHexString(),
+// 		userId,
+// 		price: 100,
+// 		status: OrderStatus.Created,
+// 		version: 0,
+// 	})
+// 	await order.save()
+
+// 	await request(app)
+// 		.post('/api/payments')
+// 		.set('Cookie', cookie)
+// 		.send({
+// 			token: 'tok_visa',
+// 			orderId: order.id,
+// 		})
+// 		.expect(201)
+
+// 	const chargeOptions = (stripe.charges.create as jest.Mock).mock.calls[0][0]
+// 	expect(chargeOptions.source).toEqual('tok_visa')
+// 	expect(chargeOptions.amount).toEqual(order.price * 100)
+// 	expect(chargeOptions.currency).toEqual('usd')
+// })
+
 it('returns a 201 with valid input', async () => {
 	const userId = new mongoose.Types.ObjectId().toHexString()
 	const cookie = signup(userId)
+	const price = Math.floor(Math.random() * 10000)
 
 	const order = Order.build({
 		id: new mongoose.Types.ObjectId().toHexString(),
 		userId,
-		price: 100,
+		price,
 		status: OrderStatus.Created,
 		version: 0,
 	})
@@ -82,8 +111,8 @@ it('returns a 201 with valid input', async () => {
 		})
 		.expect(201)
 
-	const chargeOptions = (stripe.charges.create as jest.Mock).mock.calls[0][0]
-	expect(chargeOptions.source).toEqual('tok_visa')
-	expect(chargeOptions.amount).toEqual(order.price * 100)
-	expect(chargeOptions.currency).toEqual('usd')
+	const { data: stripeCharges } = await stripe.charges.list({ limit: 50 })
+	const stripeCharge = stripeCharges.find(charge => charge.amount === price * 100)
+	expect(stripeCharge).toBeDefined()
+	expect(stripeCharge!.currency).toEqual('usd')
 })
