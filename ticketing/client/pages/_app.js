@@ -1,5 +1,5 @@
 import 'bootstrap/dist/css/bootstrap.css'
-import axios from 'axios'
+import axiosBuilder from '../api/build-client'
 import { Fragment } from 'react'
 import Header from '../components/Header'
 
@@ -7,22 +7,19 @@ const AppComponent = ({ Component, pageProps, currentUser }) => {
   return (
     <Fragment>
       <Header currentUser={currentUser} />
-      <Component {...pageProps} />
+      <Component currentUser={currentUser} {...pageProps} />
     </Fragment>
   )
 }
 
 AppComponent.getInitialProps = async ({ ctx }) => {
   try {
-    const { data } = await axios.get(
-      'http://ingress-nginx-controller.ingress-nginx.svc.cluster.local/api/users/currentuser',
-      { headers: ctx.req.headers }
-    )
+    const { data } = await axiosBuilder(ctx.req).get('/api/users/currentuser')
     return data
   } catch (error) {
     console.error(error)
-    return {}
   }
+  return {}
 }
 
 export default AppComponent
