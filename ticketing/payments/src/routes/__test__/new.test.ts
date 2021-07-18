@@ -4,6 +4,7 @@ import { app } from '../../app'
 import { signup } from '../../test/authHelper'
 import { Order } from '../../models/order'
 import { OrderStatus } from '@sp-udemy-ticketing/common'
+import { stripe } from '../../stripe'
 
 it('return a 404 when pay for order that does not exist', async () => {
 	await request(app)
@@ -57,4 +58,32 @@ it('return a 400 when pay for order has been cancelled', async () => {
 			orderId: order.id,
 		})
 		.expect(400)
+})
+
+it('returns a 201 with valid input', async () => {
+	const userId = new mongoose.Types.ObjectId().toHexString()
+	const cookie = signup(userId)
+
+	const order = Order.build({
+		id: new mongoose.Types.ObjectId().toHexString(),
+		userId,
+		price: 100,
+		status: OrderStatus.Created,
+		version: 0,
+	})
+	await order.save()
+
+	await request(app)
+		.post('/api/payments')
+		.set('Cookie', cookie)
+		.send({
+			token: 'tok_visa',
+			orderId: order.id,
+		})
+		.expect(201)
+
+	const chargeOptions = (stripe.charges.create as jest.Mock).mock.calls[0][0]
+	expect(chargeOptions.source).toEqual('tok_visa')
+	expect(chargeOptions.amount).toEqual(order.price * 100)
+	expect(chargeOptions.currency).toEqual('usd')
 })
