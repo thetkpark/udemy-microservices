@@ -12,7 +12,7 @@ const NewTicket = () => {
       title,
       price,
     },
-    onSuccess: ticket => console.log(ticket),
+    onSuccess: () => router.push('/'),
   })
 
   const onBlur = () => {
